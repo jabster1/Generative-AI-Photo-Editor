@@ -1,3 +1,5 @@
+#Created by Jaden Barnwell for educational purposes
+
 How to Run
 chmod +x run.sh               # one-time: make it executable
 
