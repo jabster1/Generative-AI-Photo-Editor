@@ -21,7 +21,7 @@ from diffusers import StableDiffusionXLInpaintPipeline, EulerAncestralDiscreteSc
 import torch.nn.functional as F
 
 # -----------------------------
-# 0) Prompt parsing dictionaries
+# Prompt parsing dictionaries
 # -----------------------------
 _COCO_SYNONYMS = {
     "person": ["person","people","man","woman","boy","girl","human"],
@@ -49,7 +49,7 @@ def parse_prompt(prompt: str):
     return targets, positions
 
 # -----------------------------
-# 1) DETR panoptic
+# DETR panoptic
 # -----------------------------
 def load_detr(device: str = None):
     processor = DetrImageProcessor.from_pretrained("facebook/detr-resnet-50-panoptic")
@@ -117,7 +117,7 @@ def panoptic_segments(pil_img, processor, model, device, score_thresh=0.75, mask
     return segs_out, (W, H)
 
 # -----------------------------
-# 2) Select segments by type/position
+# Select segments by type/position
 # -----------------------------
 def select_segments(segs, targets, positions, W, H, choose_top1_if_center=True):
     if not segs: 
@@ -144,7 +144,7 @@ def select_segments(segs, targets, positions, W, H, choose_top1_if_center=True):
  
 
 # -----------------------------
-# 3) Mask refinement (GrabCut)
+# Mask refinement (GrabCut)
 # -----------------------------
 def refine_mask_grabcut(image_pil: Image.Image, mask_u8: np.ndarray,
                         dilate_fg=11, dilate_unknown=27, iters=6, max_area_ratio=0.2):
@@ -175,7 +175,7 @@ def refine_mask_grabcut(image_pil: Image.Image, mask_u8: np.ndarray,
     return refined
 
 # -----------------------------
-# 4) SDXL inpaint loader & call
+# SDXL inpaint loader & call
 # -----------------------------
 def load_sdxl(device: str = None):
     if device is None:
@@ -212,7 +212,7 @@ def sdxl_inpaint(pipe, image_pil, mask_u8, steps=32, strength=0.60, guidance=5.0
     return out.images[0]
 
 # -----------------------------
-# 5) High-level process
+# High-level process
 # -----------------------------
 def process_image(
     image_path: str, prompt: str, out_path: str,
@@ -277,7 +277,7 @@ def process_image(
     return out_path
 
 # -----------------------------
-# 6) CLI
+# CLI
 # -----------------------------
 def valid_image_paths(path: str):
     exts = {".jpg",".jpeg",".png",".bmp",".tif",".tiff",".heic",".heif",".webp"}
