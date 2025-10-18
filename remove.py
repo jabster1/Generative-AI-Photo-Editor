@@ -1,3 +1,5 @@
+#AUTHOR: Jaden Barnwell, October 17th, 2025
+
 #!/usr/bin/env python3
 import os, sys, argparse, warnings, glob, random
 warnings.filterwarnings("ignore")
