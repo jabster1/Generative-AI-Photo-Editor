@@ -37,4 +37,4 @@ python -m pip install -r requirements.txt
 # 5) Pass-through run script
 #./run.sh --image images/bike_remove.jpg --prompt "remove the man on the bike in the center"
 #   ./run.sh --image images --prompt "remove people" --save-debug
-python remove.py "$@"
+python remove_2.0.py "$@"
